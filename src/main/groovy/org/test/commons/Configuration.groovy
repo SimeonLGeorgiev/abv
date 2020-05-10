@@ -3,16 +3,18 @@ package org.test.commons
 import groovy.transform.Memoized
 
 @Singleton
-class Configuration  {
+class Configuration extends ConfigSlurper  {
 
-    static final String DEFAULT_CONFIG_FILE_NAME = "test-environment.config"
+   static final String environment = "test-environment.config"
+    static final def configFile = './src/main/resources/test-environment.config'
 
-    ConfigSlurper configSlurper = new ConfigSlurper()
-    // to pass a non-default config file please specify -DconfigFile='<config file name>'
-    static final String CONFIG_JVM_PROP_NAME = 'configFile'
+    def config = new ConfigSlurper().parse(new File(configFile as String).toURL())
+    public final Map conf = config.flatten();
 
 
-    }
+
+
+}
 
 
 
