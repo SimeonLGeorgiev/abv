@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Main-Class: WebSuit
+Class-Path: apiguardian-api-1.1.0.jar geb-spock-3.4.jar groovy-cli-picoc
+ li-2.5.6.jar groovy-test-3.0.0.jar checker-compat-qual-2.0.0.jar groovy
+ -test-junit5-2.5.6.jar junit-platform-commons-1.5.2.jar groovy-macro-3.
+ 0.0.jar selenium-chrome-driver-3.141.59.jar groovy-all-2.4.3.jar seleni
+ um-client-factory-1.2.jar junit-jupiter-engine-5.3.2.jar groovy-docgene
+ rator-2.5.6.jar groovy-templates-3.0.0.jar groovy-testng-2.5.6.jar groo
+ vy-console-2.5.6.jar groovy-ant-2.5.6.jar jodd-lagarto-3.7.1.jar groovy
+ -groovydoc-2.5.6.jar commons-exec-1.3.jar geb-waiting-3.4.jar groovy-js
+ r223-2.5.6.jar ant-junit-1.9.13.jar opentest4j-1.2.0.jar selenium-api-3
+ .141.59.jar geb-core-3.4.jar geb-exceptions-3.4.jar groovy-groovysh-2.5
+ .6.jar okhttp-3.11.0.jar jodd-core-3.7.1.jar jodd-log-3.7.1.jar ant-ant
+ lr-1.9.13.jar groovy-nio-3.0.0.jar picocli-3.9.2.jar geb-implicit-asser
+ tions-3.4.jar commons-cli-1.4.jar byte-buddy-1.8.15.jar okio-1.14.0.jar
+  groovy-datetime-2.5.6.jar threeten-extra-1.4.jar animal-sniffer-annota
+ tions-1.14.jar groovy-json-3.0.0.jar error_prone_annotations-2.1.3.jar 
+ groovy-sql-3.0.0.jar groovy-swing-2.5.6.jar groovy-servlet-2.5.6.jar te
+ stng-6.13.1.jar junit-platform-engine-1.5.2.jar selenium-core-1.0.1.jar
+  spock-core-2.0-M2-groovy-3.0.jar jline-2.14.6.jar selenium-java-client
+ -driver-1.0.2.jar junit-platform-launcher-1.3.2.jar selenium-support-3.
+ 141.59.jar groovy-xml-3.0.0.jar qdox-1.12.1.jar groovy-cli-commons-2.5.
+ 6.jar j2objc-annotations-1.1.jar groovy-3.0.0.jar geb-ast-3.4.jar jcomm
+ ander-1.72.jar guava-25.0-jre.jar selenium-remote-driver-3.141.59.jar j
+ unit-jupiter-api-5.3.2.jar jsr305-1.3.9.jar groovy-jmx-2.5.6.jar
+

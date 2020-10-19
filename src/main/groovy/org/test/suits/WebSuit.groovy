@@ -1,30 +1,60 @@
 package org.test.suits
 
-import org.test.pages.AbvHomePage
-import org.test.pages.AbvSuccessMessagePage
-import org.test.users.WebUser
+import org.openqa.selenium.interactions.Actions
+import org.test.pages.AmazonHomePage
 import geb.spock.GebSpec
-import org.test.users.roles.WebRoles
-import org.test.pages.AbvMainPage
 
 class WebSuit extends GebSpec {
 
-    final static String RECEIVER_EMAIL = "simonar@abv.bg"
-    final static String ADDITIONAL_EMAIL = "email"  //please insert your email if you want to receive a copy from this test
-    final static String THEME_OF_EMAIL = "Congratulation, someone has used your automation test"
+    final static String HARRY_POTTER = "Harry Potter and the Cursed Child"
+    final static String ITEM_NAME = "Harry Potter and the Cursed Child - Parts One and Two"
+    final static String NOTIFICATION_TITLE = "Added to Basket"
+    final static String ONE_ITEM_IN_BASKET = "1 item"
+    final static String TYPE_OF_BOOK = "Paperback"
 
-    def "Verify ADMIN can send email (JIRA-1)"() {
-        given: "Fetch user ADMIN from configuration"
-            WebUser admin = new WebUser(WebRoles.ADMIN)
-        when: "Go to abv.bg home page"
-            to AbvHomePage
-        and: "Log in with ADMIN credentials"
-            admin.login()
-        then:"Verify login is successful by loading abv main page"
-            waitFor { at AbvMainPage}
-        and:"Admin can go,create and send email"
-            admin.createAndSendEmail(RECEIVER_EMAIL,ADDITIONAL_EMAIL,THEME_OF_EMAIL)
-        then:"Verify success page appear on the screen"
-            at AbvSuccessMessagePage
+
+    def "Amazon task for Fourth "() {
+        given: "Go to amazon.com home page"
+            to AmazonHomePage
+            def itemPrice
+        when: "Search for Harry Potter"
+            def page = at AmazonHomePage
+            page.searchField.value(HARRY_POTTER)
+            page.searchBtn.click()
+        and: "Add filter for Books"
+            page = at AmazonHomePage
+            sleep(200)
+            page.booksBtn.click()
+            page = at AmazonHomePage
+        then: "Verify Item Name, If the item badge is displayed, item type and item price"
+            sleep(1000)
+            assert page.firstItemName.take(53) == ITEM_NAME
+            assert page.itemBadge.displayed
+            assert page.itemType.text() == TYPE_OF_BOOK
+            assert page.itemPriceInList.displayed
+        when: "Open item details by pressing on the wanted type"
+            itemPrice = page.itemPriceInList.text().replaceAll("[£]", "")
+            page.acceptCookiesBtr.click()
+            page.itemType.click()
+            page = at AmazonHomePage
+        then: "Verify item name and item price"
+            sleep(1000)
+            assert page.itemName.take(53) == ITEM_NAME
+            assert page.itemPrice.displayed
+        when: "Add item to Cart"
+            page.addToCartBtn.click()
+            sleep(1000)
+            page = at AmazonHomePage
+        then: "Verify notification is shown and the item in basket is only one"
+            assert page.notificationAddedtoBasket == NOTIFICATION_TITLE
+            assert page.numberOfItemsInBasket.contains(ONE_ITEM_IN_BASKET)
+        when: "Edit item in basket"
+            page.editBasketBtn.click()
+            page = at AmazonHomePage
+        then: "Verify that everything in basket is as desired"
+            assert page.itemNameinBasket.take(53) == ITEM_NAME
+            assert page.itemTypeinBasket == TYPE_OF_BOOK
+            assert itemPrice == page.itemPriceInBasket.replaceAll("[£]", "").replaceAll("[.00]", "")
+            assert page.itemQtyInBasket == "1"
     }
 }
